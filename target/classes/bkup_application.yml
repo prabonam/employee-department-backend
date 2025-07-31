@@ -1,0 +1,49 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    url: jdbc:h2:mem:employeedb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  # For MySQL instead of H2 (comment above and uncomment below)
+  # datasource:
+  #   url: jdbc:mysql://localhost:3306/employee_db
+  #   username: root
+  #   password: your_password
+  #   driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update # use `none` or `validate` in prod
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.H2Dialect
+        # dialect: org.hibernate.dialect.MySQL8Dialect  # for MySQL
+
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+logging:
+  level:
+    org.springframework: INFO
+    com.example.demo: DEBUG
+
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    path: /swagger-ui.html
+    enabled: true
+
+---
+
+# Custom App Properties (Optional)
+app:
+  name: EmployeeDepartmentSystem
+  version: 1.0.0
